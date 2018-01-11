@@ -18,7 +18,7 @@
 
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    <p>Do you need to register instead? <a href="app/auth/registration.php">Register</a></p>
+    <p>Do you need to register instead? <a href="/register.php">Register</a></p>
 </article>
 
 <?php require __DIR__.'/views/footer.php'; ?>
