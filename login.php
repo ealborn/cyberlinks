@@ -5,9 +5,9 @@
 
     <form action="app/auth/authlogin.php" method="post">
         <div class="form-group">
-            <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" placeholder="youremail@email.com" required>
-            <small class="form-text text-muted">Please fill in your email address.</small>
+          <label for="username">Username/email</label>
+          <input class="form-control" type="text" name="username" placeholder="francis@darjeeling.com" required>
+          <small class="form-text text-muted">Please provide your username or email address.</small>
         </div><!-- /form-group -->
 
         <div class="form-group">
