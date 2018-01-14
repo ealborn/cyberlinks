@@ -4,13 +4,9 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// Check if email and password exists in the POST request.
-
-    //ny test från vin exemmpel
+    // Check if username and password are filled into login form
     if (isset($_POST['username'], $_POST['password'])) {
-      //$email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)); //trim where?
       $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
-      //$password = ($_POST['password']);//htmlentities pre-POST?
       $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);
 
       // Prepare, bind email parameter and execute the database query.
@@ -30,11 +26,11 @@ require __DIR__.'/../autoload.php';
         // If we found the user in the database, compare typed in password with the one in the database using password_verify.
         $authenticated = $_SESSION['authenticated'] ?? false;
         if ($username === $user['username'] && password_verify($password, $user['password'])) {
-          $_SESSION['message'] = sprintf('You\'ve successfully logged in %s!', $user['username']);
-          $_SESSION['authenticated'] = true;
-      } else {
-          $_SESSION['message'] = 'Whoops. Looks like you missed something. Please try again.';
-      }
+            $_SESSION['message'] = sprintf('Welcome, %s!', $user['username']);
+            $_SESSION['authenticated'] = true;
+        } else {
+            $_SESSION['message'] = 'Whoops. Looks like you missed something. Please try again.';
+        }
 
           // If the password matches, save the user in a session.
           // unsave the password in the session!
