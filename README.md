@@ -1,7 +1,7 @@
 # cyberlinks
 
 ### Features
-Features to implement, written as user stories: 
+Features to implement, written as user stories:
 
 As a user I should be able to create an account.
 
@@ -21,7 +21,7 @@ As a user I should be able to delete my links.
 
 As a user I should be able to up and down vote links.
 
-###Requirements
+### Requirements
 List of requirements which needed to be fulfilled in order to complete the project:
 
 The project should implement nice looking graphical user interface.
