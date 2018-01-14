@@ -24,7 +24,7 @@ require __DIR__.'/../autoload.php';
       }
 
         // If we found the user in the database, compare typed in password with the one in the database using password_verify.
-        $authenticated = $_SESSION['authenticated'] ?? false;
+        $authenticated = $_SESSION['authenticated'] ?? false; //return left if set and not NULL, return right otherwise.
         if ($username === $user['username'] && password_verify($password, $user['password'])) {
             $_SESSION['message'] = sprintf('Welcome, %s!', $user['username']);
             $_SESSION['authenticated'] = true;
