@@ -5,16 +5,12 @@ unset($_SESSION['message']);
 $authenticated = $_SESSION['authenticated'] ?? false;
 ?>
 
-<?php if ($message !== ''): ?>
-    <p><?php echo $message; ?></p>
-<?php endif; ?>
-
 <article>
     <h1><?php echo $config['title']; ?></h1>
     <p>A link-posting-community.</p>
 
-    <?php if (isset($_SESSION['userSession'])): ?>
-        <p>Welcome, <?php echo $_SESSION['userSession']['username']?>!</p>
+    <?php if ($message !== ''): ?>
+        <p><?php echo $message; ?></p>
     <?php endif; ?>
 </article>
 
