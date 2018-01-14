@@ -14,7 +14,7 @@ $authenticated = $_SESSION['authenticated'] ?? false;
     <p>A link-posting-community.</p>
 
     <?php if (isset($_SESSION['userSession'])): ?>
-        <p>Welcome, <?php echo $_SESSION['userSession']['email']?>!</p>
+        <p>Welcome, <?php echo $_SESSION['userSession']['username']?>!</p>
     <?php endif; ?>
 </article>
 

@@ -7,13 +7,15 @@ require __DIR__.'/../autoload.php';
 // Check if email and password exists in the POST request.
 
     //ny test från vin exemmpel
-    if (isset($_POST['email'], $_POST['password'])) {
-      $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)); //trim where?
-      $password = ($_POST['password']);//htmlentities pre-POST?
+    if (isset($_POST['username'], $_POST['password'])) {
+      //$email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL)); //trim where?
+      $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
+      //$password = ($_POST['password']);//htmlentities pre-POST?
+      $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);
 
       // Prepare, bind email parameter and execute the database query.
-      $statement = $pdo->prepare('SELECT * FROM User WHERE email = :email');
-      $statement->bindParam(':email', $email, PDO::PARAM_STR);
+      $statement = $pdo->prepare('SELECT * FROM User WHERE username = :username');
+      $statement->bindParam(':username', $username, PDO::PARAM_STR);
       $statement->execute();
 
       // Fetch the user as an associative array.
@@ -27,8 +29,8 @@ require __DIR__.'/../autoload.php';
 
         // If we found the user in the database, compare typed in password with the one in the database using password_verify.
         $authenticated = $_SESSION['authenticated'] ?? false;
-        if ($email === $user['email'] && password_verify($password, $user['password'])) {
-          $_SESSION['message'] = sprintf('You\'ve successfully logged in %s!', $user['name']);
+        if ($username === $user['username'] && password_verify($password, $user['password'])) {
+          $_SESSION['message'] = sprintf('You\'ve successfully logged in %s!', $user['username']);
           $_SESSION['authenticated'] = true;
       } else {
           $_SESSION['message'] = 'Whoops. Looks like you missed something. Please try again.';
@@ -42,4 +44,3 @@ require __DIR__.'/../autoload.php';
           // redirect the user
           redirect('../../index.php');
       }
-  }
