@@ -19,15 +19,14 @@ require __DIR__.'/../autoload.php';
 
       // If we couldn't find the user in the database, redirect back to login page
       if (!$user) {
-          die(var_dump($pdo->errorInfo()));
-          //redirect('../../login.php');
+          redirect('../../login.php');
       }
 
         // If we found the user in the database, compare typed in password with the one in the database using password_verify.
-        $authenticated = $_SESSION['authenticated'] ?? false; //return left if set and not NULL, return right otherwise.
+        $userSession = $_SESSION['userSession'] ?? false; //return left if set and not NULL, return right otherwise.
         if ($username === $user['username'] && password_verify($password, $user['password'])) {
             $_SESSION['message'] = sprintf('Welcome, %s!', $user['username']);
-            $_SESSION['authenticated'] = true;
+            $_SESSION['userSession'] = true;
         } else {
             $_SESSION['message'] = 'Whoops. Looks like you missed something. Please try again.';
         }
