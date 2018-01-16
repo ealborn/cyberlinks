@@ -2,7 +2,7 @@
 
 $message = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
-$authenticated = $_SESSION['authenticated'] ?? false;
+$userSession = $_SESSION['userSession'] ?? false;
 ?>
 
 <article>
@@ -14,4 +14,21 @@ $authenticated = $_SESSION['authenticated'] ?? false;
     <?php endif; ?>
 </article>
 
-<?php require __DIR__.'/views/footer.php'; ?>
+<?php
+$statement = $pdo->prepare('select username, bio from user');
+$statement->execute();
+$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($results as $result) {
+    $username = $result['username'];
+    $bio = $result['bio'];
+
+    ?>
+    <div class="">
+      <?php echo "$username and $bio"; ?>
+    </div>
+
+<?php
+}
+
+ require __DIR__.'/views/footer.php'; ?>
