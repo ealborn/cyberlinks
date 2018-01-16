@@ -6,12 +6,15 @@
             <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/index.php' ? 'active' : ''; ?>" href="/index.php">Home</a>
         </li><!-- /nav-item -->
 
-        <li class="nav-item">
-            <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/profile.php' ? 'active' : ''; ?>" href="/profile.php">Profile</a>
-        </li><!-- /nav-item -->
+        <?php if ($_SESSION['userSession']) : ?>
+          <li class="nav-item">
+          <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/profile.php' ? 'active' : ''; ?>" href="/profile.php">Profile</a>
+          </li><!-- /nav-item -->
+        <?php endif; ?>
+
 
         <li class="nav-item">
-            <?php if (isset($_SESSION['userSession'])): ?>
+            <?php if (isset($_SESSION['userSession'])) : ?>
                 <a class="nav-link" href="/app/auth/authlogout.php">Logout</a>
             <?php else: ?>
                 <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Login</a>
