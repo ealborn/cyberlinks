@@ -4,6 +4,10 @@
 $userSession = $_SESSION['userSession'] ?? false;
 $message = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
+
+if ($message !== ''): ?>
+    <p><?php echo $message; ?></p>
+<?php endif;
 ?>
 
 <article>

@@ -37,5 +37,5 @@ require __DIR__.'/../autoload.php';
 
           $_SESSION['userSession'] = $user;
           // redirect the user
-          redirect('../../index.php');
+          redirect('../../profile.php');
       }

@@ -1,5 +1,10 @@
 <?php
-require __DIR__.'/views/header.php';
+//require __DIR__.'/views/header.php';
+require __DIR__.'/app/autoload.php';
+
+$userSession = $_SESSION['userSession'] ?? false;
+$message = $_SESSION['message'] ?? '';
+unset($_SESSION['message']);
 
 $id = $_SESSION['userSession']['user_id'];
 
@@ -9,6 +14,7 @@ if (isset($_FILES['avatar'])) {
     $path = pathinfo($_FILES['avatar']['name']);
     $ext = $path['extension'];
     $filename = $_SESSION['userSession']['username'].'.'.$ext;
+    echo $filename;
 
 
     //move_uploaded_file($avatar['tmp_name'], __DIR__.'/uploads//'.$filename); //funkar lokalt till mappen uploads
@@ -17,9 +23,11 @@ if (isset($_FILES['avatar'])) {
   // update the image to the database
 
     //die(var_dump($id));
-    //$updateAvatar = $pdo->prepare("UPDATE User SET avatar = :avatar WHERE user_id = :user_id");
-    $updateAvatar = $pdo->prepare("INSERT INTO User (avatar) values (:avatar)");
-
+    $updateAvatar = $pdo->prepare("UPDATE User SET avatar = :avatar WHERE user_id = :user_id");
+    //$updateAvatar = $pdo->prepare("INSERT INTO User (avatar) values (:avatar)");
+    echo "<br/>";
+    var_dump($updateAvatar);
+    echo "<br/>";
     //if the above doesn't work, stop script and show error.
     if (!$updateAvatar) {
       die(var_dump (
@@ -34,7 +42,7 @@ if (isset($_FILES['avatar'])) {
     //om var_dumpen ligger i en if-sats, flytta ner alla bindparams och excecute under if-satsen
     //så att den inte utför dem innan den kollar om nåt går fel.
     $updateAvatar->bindParam(':user_id', $id, PDO::PARAM_INT);
-    $updateAvatar->bindParam(':avatar', $fileName, PDO::PARAM_STR);
+    $updateAvatar->bindParam(':avatar', $filename, PDO::PARAM_STR);
     $updateAvatar->execute();
     if (!$updateAvatar) {
       die(var_dump($pdo->errorInfo()));
@@ -42,14 +50,16 @@ if (isset($_FILES['avatar'])) {
 
     //get the new data from the database and save it in a session.
     $newAvatar = $pdo->prepare("SELECT * FROM User where user_id = ':user_id'");
-    $newAvatar->bindParam(':user_id', $_SESSION['userSession']['user_id'], PDO::PARAM_INT);
-    $newAvatar->execute();
+
 
     if (!$newAvatar) {
       die(var_dump($pdo->errorInfo()));
     }
+    $newAvatar->bindParam(':user_id', $_SESSION['userSession']['user_id'], PDO::PARAM_INT);
+    $newAvatar->execute();
 
     $user = $newAvatar->fetch(PDO::FETCH_ASSOC);
+    die(var_dump($user));
     $_SESSION['userSession'] = $user;
     //redirect('/profile.php');
 }
