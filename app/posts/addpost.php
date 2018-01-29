@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
 
 // In this file we add and store new posts in the database.
@@ -27,9 +24,7 @@ if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
   if (!$addPost) {
     die(var_dump($pdo->errorInfo()));
   }
-
 }
-
 
 // get all posts from database
 $statement = $pdo->prepare('SELECT * FROM Entry JOIN User ON Entry.poster=User.username ORDER BY post_date DESC');

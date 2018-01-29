@@ -1,7 +1,4 @@
 <?php
-
-declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
 
 // Check if username and password are filled into login form
