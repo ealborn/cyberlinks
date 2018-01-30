@@ -7,18 +7,23 @@
         </li><!-- /nav-item -->
 
         <?php if (isset($_SESSION['userSession'])) : ?>
-          <li class="nav-item">
-          <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/profile.php' ? 'active' : ''; ?>" href="/profile.php">Profile</a>
-          </li><!-- /nav-item -->
+        <li class="nav-item">
+            <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/profile.php' ? 'active' : ''; ?>" href="/profile.php">Profile</a>
+        </li><!-- /nav-item -->
         <?php endif; ?>
 
-
+        <?php if (isset($_SESSION['userSession'])): ?>
         <li class="nav-item">
-            <?php if (isset($_SESSION['userSession'])) : ?>
+              <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/userposts.php' ? 'active' : ''; ?>" href="/userposts.php">Posts</a>
+        </li><!-- /nav-item -->
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['userSession'])) : ?>
+        <li class="nav-item">
                 <a class="nav-link" href="/app/auth/authlogout.php">Logout</a>
-            <?php else: ?>
+          <?php else: ?>
                 <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Login</a>
-            <?php endif; ?>
+        <?php endif; ?>
         </li><!-- /nav-item -->
     </ul><!-- /navbar-nav -->
 </nav><!-- /navbar -->
