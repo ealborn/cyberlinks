@@ -1,6 +1,6 @@
 .img-thumbnail {
-  width: 50px;
+  width: 100px;
   height: auto;
   border-style: solid;
-  border-color: red;
+  border-color: green;
 }
