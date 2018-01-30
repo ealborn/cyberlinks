@@ -52,7 +52,7 @@ $userSession = $_SESSION['userSession'] ?? false;
       </div>
       <form class="" action="index.html" method="post">
         <input type="text" name="entry_id" value="<?php echo $entry['user_id']; ?>">
-        <input type="text" name="upvote" value="<?php echo $entrys['score']; ?>">
+        <input type="text" name="upvote" value="<?php echo $entry['score']; ?>">
         <button type="button" name="upv">vote up</button>
       </form>
       <form class="" action="index.html" method="post">
@@ -62,7 +62,7 @@ $userSession = $_SESSION['userSession'] ?? false;
       </form>
     </div>
     <?php
-  }?>
+  }//end foreach?>
 
 </div>
 
