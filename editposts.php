@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 require __DIR__.'/views/header.php';
 
 $stmt = $pdo->prepare('SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.* FROM Entry JOIN User ON Entry.poster=User.username JOIN Votes ON Votes.vote_id=Entry.entry_id');
@@ -18,7 +19,7 @@ $entry = $stmt->fetch(PDO::FETCH_ASSOC); //byt till fetch för att bara hämta e
 <div class="container">
         <div class="row pt-5 justify-content-center">
             <div class="col-md-6">
-                <form action="app/posts/updatepost.php" method="post">
+                <form action="app/posts/autheditpost.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $entry['entry_id']; ?>">
 
                     <div class="form-group">

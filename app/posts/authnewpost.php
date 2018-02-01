@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
-// In this file we add and store new posts in the database.
+// In this file we add new posts into the database.
 
 if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
 

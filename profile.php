@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 require __DIR__.'/views/header.php';
 
 // check if a user is logged in

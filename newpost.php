@@ -3,7 +3,7 @@
         <div class="row pt-5 justify-content-center">
             <div class="col-md-6">
               <h2>Make a new post</h2>
-                <form  action="app/posts/addpost.php" method="post">
+                <form  action="app/posts/authnewpost.php" method="post">
 
                     <div class="form-group">
                         <label for="title">Title</label>
