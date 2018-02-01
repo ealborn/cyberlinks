@@ -19,12 +19,12 @@ $userSession = $_SESSION['userSession'] ?? false;
 
 <div class="row">
 
-  <?php
-  $stmt = $pdo->prepare('SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.* FROM Entry JOIN User ON Entry.poster=User.username JOIN Votes ON Votes.vote_id=Entry.entry_id');
+  <?php //display all user eposts(entries), the author and voting scores, ordered by vote score in descending order.
+  $stmt = $pdo->prepare("SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.* FROM Entry JOIN User ON Entry.poster=User.username JOIN Votes ON Votes.vote_id=Entry.entry_id ORDER BY score DESC");
   $stmt->execute();
   $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  foreach ($entries as $entry) {
+  foreach ($entries as $entry) { //start foreach
     $title = $entry['title'];
     $link = $entry['link'];
     $description = $entry['description'];
