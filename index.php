@@ -51,12 +51,12 @@ $userSession = $_SESSION['userSession'] ?? false;
         <span class="col-12"><?php echo $post_date ?></span>
       </div>
       <form class="" action="index.html" method="post">
-        <input type="text" name="entry_id" value="<?php echo $entry['user_id']; ?>">
+        <input type="text" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
         <input type="text" name="upvote" value="<?php echo $entry['score']; ?>">
         <button type="button" name="upv">vote up</button>
       </form>
       <form class="" action="index.html" method="post">
-        <input type="text" name="entry_id" value="<?php echo $entry['user_id']; ?>">
+        <input type="text" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
         <input type="text" name="downvote" value="<?php echo $entry['score']; ?>">
         <button type="button" name="downv">vote down</button>
       </form>
