@@ -20,16 +20,6 @@ $userSession = $_SESSION['userSession'] ?? false;
 <div class="row">
 
   <?php
-
-  // $getVotes =$pdo->prepare('SELECT score FROM Votes WHERE vote_id=:vote_id');
-  // $getVotes->bindParam(':vote_id', $userSession['user_id'], PDO::PARAM_INT);
-  // $getVotes->execute();
-  // $getVotes = $getVotes->fetchAll(PDO::FETCH_ASSOC);
-  //
-  // var_dump($getVotes);
-
-  // Ny test
-  //$stmt = $pdo->prepare('SELECT title, description, link, post_date FROM Entry');
   $stmt = $pdo->prepare('SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.* FROM Entry JOIN User ON Entry.poster=User.username JOIN Votes ON Votes.vote_id=Entry.entry_id');
   $stmt->execute();
   $entries = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -68,12 +58,11 @@ $userSession = $_SESSION['userSession'] ?? false;
 </div>
 
 
-
 <?php if (isset($_SESSION['userSession'])) {
   require __DIR__.'/newpost.php';
 } else {
-  echo "You need to log in first.";?>
-  <a href="/register.php">Log in</a>
+  echo "You need to log in to post.";?>
+  <a href="/login.php">Log in here</a>
   <?php
 }
 

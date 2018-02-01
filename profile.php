@@ -41,11 +41,6 @@ unset($_SESSION['message']);
   <button type="submit" class="btn btn-sm mt-1">Upload new avatar</button>
 </article>
 
-<p>här är jag!!!</p>
-
-
-
-
 </form>
 <!-- update user profile stuff-working!!!-->
 <?php
