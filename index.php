@@ -41,16 +41,17 @@ $userSession = $_SESSION['userSession'] ?? false;
         <p class="col-12"><?php echo $description ?></p>
         <span class="col-12"><?php echo $post_date ?></span>
       </div>
-      <form class="" action="index.html" method="post">
-        <input type="text" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
-        <input type="text" name="upvote" value="<?php echo $entry['score']; ?>">
-        <button type="button" name="upv">vote up</button>
+      <form class="" action="/app/auth/upVote.php" method="post">
+        <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
+        <input type="hidden" name="upvote" value="<?php echo $entry['score']+1; ?>">
+        <button type="submit" name="upv">vote up</button>
       </form>
-      <form class="" action="index.html" method="post">
-        <input type="text" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
-        <input type="text" name="downvote" value="<?php echo $entry['score']; ?>">
-        <button type="button" name="downv">vote down</button>
+      <form class="" action="/app/auth/downVote.php" method="post">
+        <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
+        <input type="hidden" name="downvote" value="<?php echo $entry['score']-1; ?>">
+        <button type="submit" name="downv">vote down</button>
       </form>
+      <p><?php echo $entry['score']?></p>
     </div>
     <?php
   }//end foreach?>
