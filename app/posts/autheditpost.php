@@ -19,16 +19,8 @@ if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
     $updatePost->bindParam(':title', $title, PDO::PARAM_STR);
     $updatePost->bindParam(':link', $link, PDO::PARAM_STR);
     $updatePost->bindParam(':description', $description, PDO::PARAM_STR);
-    //$updatePost->bindParam(':id', $entry_id, PDO::PARAM_INT); //alt version
     $updatePost->bindParam(':id', $_POST['id'], PDO::PARAM_INT); //ny med id
-
     $updatePost->execute();
 }
-    // get the updated post data
-    $statement = $pdo->prepare("SELECT * FROM Entry where entry_id =:id");
-    $statement->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
-    $statement->execute();
-
-    $updates = $statement->fetch(PDO::FETCH_ASSOC);
 
 redirect('../../userposts.php');

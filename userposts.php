@@ -35,4 +35,8 @@ $links = $userPosts->fetchAll(PDO::FETCH_ASSOC);
     <input type="hidden" value="<?php echo $link['entry_id'] ?>">
     <button type="submit" name="button">Edit post</button>
   </form>
+  <form action="/app/posts/deletepost.php" method="post">
+    <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
+    <button type="submit" name="button">Delete post</button>
+  </form>
 <?php endforeach; ?>

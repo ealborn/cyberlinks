@@ -5,7 +5,7 @@ require __DIR__.'/views/header.php';
 $stmt = $pdo->prepare('SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.* FROM Entry JOIN User ON Entry.poster=User.username JOIN Votes ON Votes.vote_id=Entry.entry_id');
 //$stmt = $pdo->prepare("SELECT * FROM Entry");
 $stmt->execute();
-$entry = $stmt->fetch(PDO::FETCH_ASSOC); //byt till fetch för att bara hämta ett inlägg istället.
+$entry = $stmt->fetch(PDO::FETCH_ASSOC); //fetching the first row of results from the array.
 
 // foreach ($entries as $entry) {
 //   $title = $entry['title'];
