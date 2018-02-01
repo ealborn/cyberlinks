@@ -40,4 +40,5 @@ if (isset($_POST['password'])) {
           die(var_dump($pdo->errorInfo()));
       }
 }
+
 redirect('/profile.php');
