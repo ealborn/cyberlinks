@@ -8,38 +8,40 @@ $message = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
 ?>
 
-<article>
-  <h1>Profile for <?php echo $userSession['username'] ?></h1>
-  <p>This is your own profile page. Here you can edit your stuff. Link to update part of page.</p>
-  <p>Or update/delete your posts, link to that part here.</p>
-</article>
+
+  <div class="card">
+
+  <h3>Profile for <?php echo $userSession['username'] ?></h3>
+  <p>This is your own profile page. Here you can edit your stuff.</p>
+  <div class="row">
+    <div class="col">
+      <!-- Displays defualt image if the user has not uploaded an image yet -->
+      <?php if (!isset($userSession['avatar'])): ?>
+        <img src="assets/defaults/profilestart.png" alt="default image" class="img-thumbnail">
+      <?php else : ?>
+        <!-- else display users uploaded avatar image -->
+        <img src="uploads/<?php echo $userSession['avatar']; ?>" class="img-thumbnail">
+      <?php endif; ?>
+    </div>
+
+    <div class="col">
+      <form action="upload.php" method="post" enctype="multipart/form-data">
+        <label for="avatar">Update user image (only .png accepted)</label>
+        <input type="file" name="avatar" accept=".png" required>
+        <button type="submit" class="btn btn-sm mt-1">Upload new avatar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h5 class="col-6">Your Biography:</h5>
+  <p class="col-6"><?php echo $userSession['bio']; ?></p>
+</div>
 
 
-<article>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-
-    <!-- Displays defualt image if the user has not uploaded an image yet -->
-    <?php if (!isset($userSession['avatar'])): ?>
-      <img src="uploads/profilestart.png" alt="default" class="img-thumbnail">
-    <?php else : ?>
-      <!-- else display users uploaded avatar image -->
-      <img src="uploads/<?php echo $userSession['avatar']; ?>" class="img-thumbnail">
-    <?php endif; ?>
-
-      <h4>Your Biography:</h4>
-      <div class="row">
-
-        <?php echo $userSession['bio']; ?>
-
-      </div>
 
 
-  <label for="avatar">Update user image (only .png accepted)</label>
-  <input type="file" name="avatar" accept=".png" required>
-  <button type="submit" class="btn btn-sm mt-1">Upload new avatar</button>
-</article>
-
-</form>
 <!-- update user profile stuff-working!!!-->
 <?php
 // fetch from database again
