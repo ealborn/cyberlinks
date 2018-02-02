@@ -9,18 +9,8 @@ $userPosts = $pdo->prepare("SELECT * from Entry JOIN Votes ON Votes.vote_id=Entr
 $userPosts->bindParam(':userSession', $userSession['username'], PDO::PARAM_STR);
 $userPosts->execute();
 $links = $userPosts->fetchAll(PDO::FETCH_ASSOC);
-//funkar inte och ger Illegal string offset error
-// foreach ($links as $link) {
-//   $title = $link['title'];
-//   $link = $link['link'];
-//   $description = $link['description'];
-//   $postDate = $link['post_date'];
-//   $score = $link['score'];
-//   $entryId =$link['entry_id'];
-// }
-// ?>
 
-<?php foreach($links as $link): ?>
+foreach($links as $link): ?>
   <h1><?php echo $link['title'] ?></h1>
   <p><?php echo $link['link'] ?></p>
   <p><?php echo $link['poster'] ?></p>
@@ -28,5 +18,9 @@ $links = $userPosts->fetchAll(PDO::FETCH_ASSOC);
   <form action="editposts.php" method="post">
     <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
     <button type="submit" name="button">Edit post</button>
+  </form>
+  <form action="/app/posts/deletepost.php" method="post">
+    <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
+    <button type="submit" name="button">Delete</button>
   </form>
 <?php endforeach; ?>
