@@ -26,38 +26,54 @@ $userSession = $_SESSION['userSession'] ?? false;
     $link = $entry['link'];
     $description = $entry['description'];
     $post_date = $entry['post_date'];
-    $score = $entry['score'] ?>
+    $score = $entry['score'];
+    $avatar = $entry['avatar'];
+    $username = $entry['username'];?>
 
-<!-- displays all user posts made  -->
-<div class="card">
-  <div class="card-body">
-      <div class="row">
-        <h3 class="card-header col-12"><?php echo $title ?></h3>
-        <!-- <h5 class="col-12"><?php echo $title; ?></h5> -->
-        <h5 class="col-12"><a href="<?php echo $link; ?>" target="_blank"> <?php echo $entry['link']; ?></a></h5>
-        <h6 class="col-12"><?php echo $description ?></h6>
-        <h6 class="col-12"><?php echo $post_date ?></h6>
-        <p class="col-12"><?php echo "Votes: ".$entry['score']?></p>
-      </div>
-      <div class="col-12">
-        <div class="row">
-          <form action="/app/auth/upVote.php" method="post">
-            <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
-            <input type="hidden" name="upvote" value="<?php echo $entry['score']+1; ?>">
-            <button type="submit" class="badge badge-pill badge-success" name="upv">Vote up</button>
-          </form>
-          <form action="/app/auth/downVote.php" method="post">
-            <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
-            <input type="hidden" name="downvote" value="<?php echo $entry['score']-1; ?>">
-            <button type="submit" class="badge badge-pill badge-danger" name="downv">Vote down</button>
-          </form>
+<!-- displays all posts made  -->
+  <div class="card">
+    <div class="card-body">
+
+        <div class="card-header row">
+          <div class="col-6">
+            <h3 class=""><?php echo $title ?></h3>
+          </div>
+
+          <div class="col">
+            <img src="uploads/<?php echo $avatar; ?>" class="img-thumbnail mini float-right">
+            <p class=""><?php echo "Posted by ".$username. " on ".$post_date; ?></p>
+          </div>
+
         </div>
-      </div>
-  </div>
-</div>
+
+          <h5 class="col-6"><a href="<?php echo $link; ?>" target="_blank"> <?php echo $entry['link']; ?></a></h5>
+          <h6 class="col-6"><?php echo $description ?></h6>
+          <p class="col-6"><?php echo "Votes: ".$entry['score']?></p>
+
+
+          <div class="container">
+            <div class="row col-6">
+              <form action="/app/auth/upVote.php" method="post">
+                <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
+                <input type="hidden" name="upvote" value="<?php echo $entry['score']+1; ?>">
+                <button type="submit" class="badge badge-pill badge-success" name="upv">Vote up</button>
+              </form>
+            </div>
+
+            <div class="row col-6">
+              <form action="/app/auth/downVote.php" method="post">
+                <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
+                <input type="hidden" name="downvote" value="<?php echo $entry['score']-1; ?>">
+                <button type="submit" class="badge badge-pill badge-danger" name="downv">Vote down</button>
+              </form>
+            </div>
+          </div> <!-- /container -->
+
+      </div> <!-- /card body -->
+  </div> <!-- /card -->
   <?php
-  }//end foreach?>
-</div>
+}//end foreach
+?>
 
 
 <?php if (isset($_SESSION['userSession'])) {

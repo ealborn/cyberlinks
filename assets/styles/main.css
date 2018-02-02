@@ -1,6 +1,21 @@
+body {
+  background-color: #dfdfdf;
+}
+.container {
+  background-color: white;
+}
+
 .img-thumbnail {
-  width: 100px;
+  max-width:100px;
+  max-height:100px;
+  width: auto;
   height: auto;
+}
+
+.mini {
+  max-width:45px;
+  max-height:45px;
+  padding: 0;
 }
 
 .card-header {
