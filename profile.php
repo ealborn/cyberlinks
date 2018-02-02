@@ -6,8 +6,6 @@ require __DIR__.'/views/header.php';
 $userSession = $_SESSION['userSession'] ?? false;
 $message = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
-
-//removed message thingy here, if it won't work to log in could be why.
 ?>
 
 <article>

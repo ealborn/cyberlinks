@@ -16,9 +16,6 @@ $userSession = $_SESSION['userSession'] ?? false;
   <?php endif; ?>
 </article>
 
-
-<div class="row">
-
   <?php //display all user eposts(entries), the author and voting scores, ordered by vote score in descending order.
   $stmt = $pdo->prepare("SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.* FROM Entry JOIN User ON Entry.poster=User.username JOIN Votes ON Votes.vote_id=Entry.entry_id ORDER BY score DESC");
   $stmt->execute();
@@ -31,31 +28,34 @@ $userSession = $_SESSION['userSession'] ?? false;
     $post_date = $entry['post_date'];
     $score = $entry['score'] ?>
 
-
-    <div class="col-6 offset-3">
+<div class="card">
+  <div class="card-body">
       <div class="row">
-        <h3 class="col-12"><?php echo $title ?></h3>
-        <p class="col-12"><?php echo $link ?></p>
+        <h3 class="card-header col-12"><?php echo $title ?></h3>
+        <!-- <h5 class="col-12"><?php echo $title; ?></h5> -->
+        <h5 class="col-12"><a href="<?php echo $link; ?>" target="_blank"> <?php echo $entry['title']; ?></a></h5>
+        <h6 class="col-12"><?php echo $description ?></h6>
+        <h6 class="col-12"><?php echo $post_date ?></h6>
+        <p class="col-12"><?php echo "Votes: ".$entry['score']?></p>
       </div>
-      <div class="row">
-        <p class="col-12"><?php echo $description ?></p>
-        <span class="col-12"><?php echo $post_date ?></span>
+      <div class="col-12">
+        <div class="row">
+          <form action="/app/auth/upVote.php" method="post">
+            <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
+            <input type="hidden" name="upvote" value="<?php echo $entry['score']+1; ?>">
+            <button type="submit" class="badge badge-pill badge-success" name="upv">Vote up</button>
+          </form>
+          <form action="/app/auth/downVote.php" method="post">
+            <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
+            <input type="hidden" name="downvote" value="<?php echo $entry['score']-1; ?>">
+            <button type="submit" class="badge badge-pill badge-danger" name="downv">Vote down</button>
+          </form>
+        </div>
       </div>
-      <form class="" action="/app/auth/upVote.php" method="post">
-        <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
-        <input type="hidden" name="upvote" value="<?php echo $entry['score']+1; ?>">
-        <button type="submit" name="upv">vote up</button>
-      </form>
-      <form class="" action="/app/auth/downVote.php" method="post">
-        <input type="hidden" name="entry_id" value="<?php echo $entry['entry_id']; ?>">
-        <input type="hidden" name="downvote" value="<?php echo $entry['score']-1; ?>">
-        <button type="submit" name="downv">vote down</button>
-      </form>
-      <p><?php echo $entry['score']?></p>
-    </div>
-    <?php
+  </div>
+</div>
+  <?php
   }//end foreach?>
-
 </div>
 
 
@@ -69,4 +69,5 @@ $userSession = $_SESSION['userSession'] ?? false;
 
 require __DIR__.'/views/footer.php';
 ?>
+<a href="https://www.flaticon.com/search?word=chevron">Icons by Chevron on Flaticon</a>
 </div>

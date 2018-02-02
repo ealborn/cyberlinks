@@ -1,5 +1,4 @@
 <div class="container">
-
         <div class="row pt-5 justify-content-center">
             <div class="col-md-6">
               <h2>Make a new post</h2>
