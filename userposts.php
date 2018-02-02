@@ -9,6 +9,8 @@ $userPosts->bindParam(':userSession', $userSession['username'], PDO::PARAM_STR);
 $userPosts->execute();
 $links = $userPosts->fetchAll(PDO::FETCH_ASSOC);
 
+// fetch each user post link, title, who posted and description and add buttons
+//to delete and edit
 foreach($links as $link): ?>
   <h1><?php echo $link['title'] ?></h1>
   <p><?php echo $link['link'] ?></p>
@@ -23,3 +25,7 @@ foreach($links as $link): ?>
     <button type="submit" name="button">Delete</button>
   </form>
 <?php endforeach; ?>
+
+<?php if ($links == NULL) : ?>
+<?php require __DIR__.'/newpost.php'; ?>
+<?php endif; ?>
