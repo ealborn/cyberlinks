@@ -19,15 +19,17 @@ $links = $userPosts->fetchAll(PDO::FETCH_ASSOC);
           <h3 class="col-12"><?php echo $link['title'] ?></h3>
           <h5 class="col-12"><?php echo $link['link'] ?></h5>
           <p class="col-12"><?php echo $link['description'] ?></p>
+<div class="row">
+  <form class="col-12" action="editposts.php" method="post">
+    <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
+    <button class="btn btn-primary" type="submit" name="button">Edit post</button>
+  </form>
+  <form class="col-12" action="/app/posts/deletepost.php" method="post">
+    <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
+    <button class="btn btn-danger" type="submit" name="button">Delete</button>
+  </form>
 
-          <form class="col-12" action="editposts.php" method="post">
-            <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
-            <button class="btn btn-primary" type="submit" name="button">Edit post</button>
-          </form>
-          <form class="col-12" action="/app/posts/deletepost.php" method="post">
-            <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
-            <button class="btn btn-danger" type="submit" name="button">Delete</button>
-          </form>
+</div>
         <?php
       endforeach;
       ?>
