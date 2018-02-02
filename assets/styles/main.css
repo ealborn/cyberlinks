@@ -1,8 +1,6 @@
 .img-thumbnail {
   width: 100px;
   height: auto;
-  border-style: solid;
-  border-color: green;
 }
 
 .card-header {
