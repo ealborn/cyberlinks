@@ -33,7 +33,7 @@ $userSession = $_SESSION['userSession'] ?? false;
       <div class="row">
         <h3 class="card-header col-12"><?php echo $title ?></h3>
         <!-- <h5 class="col-12"><?php echo $title; ?></h5> -->
-        <h5 class="col-12"><a href="<?php echo $link; ?>" target="_blank"> <?php echo $entry['title']; ?></a></h5>
+        <h5 class="col-12"><a href="<?php echo $link; ?>" target="_blank"> <?php echo $entry['link']; ?></a></h5>
         <h6 class="col-12"><?php echo $description ?></h6>
         <h6 class="col-12"><?php echo $post_date ?></h6>
         <p class="col-12"><?php echo "Votes: ".$entry['score']?></p>
