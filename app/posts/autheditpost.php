@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
-
+//die(var_dump($_POST));
 //Updates user posts in the database
 if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
     $title = filter_var(trim($_POST['title']), FILTER_SANITIZE_STRING);
@@ -11,15 +11,15 @@ if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
 
     $updatePost = $pdo->prepare("UPDATE Entry SET title = :title, link = :link, description = :description WHERE entry_id = :id");
 
-    if (!$updatePost) {
-      die(var_dump($pdo->errorInfo()));
-    }
 
 
     $updatePost->bindParam(':title', $title, PDO::PARAM_STR);
     $updatePost->bindParam(':link', $link, PDO::PARAM_STR);
     $updatePost->bindParam(':description', $description, PDO::PARAM_STR);
-    $updatePost->bindParam(':id', $_POST['entry_id'], PDO::PARAM_INT); //ny med id
+    $updatePost->bindParam(':id', $_POST['id'], PDO::PARAM_INT); //ny med id
+    if (!$updatePost) {
+      die(var_dump($pdo->errorInfo()));
+    }
     $updatePost->execute();
-    redirect('../../userposts.php');
 }
+redirect('../../userposts.php');

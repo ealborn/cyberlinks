@@ -26,7 +26,7 @@ $links = $userPosts->fetchAll(PDO::FETCH_ASSOC);
   <p><?php echo $link['poster'] ?></p>
   <p><?php echo $link['description'] ?></p>
   <form action="editposts.php" method="post">
-    <input type="hidden" value="<?php echo $link['entry_id'] ?>">
+    <input type="hidden" name="entry_id" value="<?php echo $link['entry_id'] ?>">
     <button type="submit" name="button">Edit post</button>
   </form>
 <?php endforeach; ?>

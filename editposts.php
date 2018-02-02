@@ -2,31 +2,22 @@
 declare(strict_types=1);
 require __DIR__.'/views/header.php';
 
+  $var = filter_var($_POST['entry_id'], FILTER_SANITIZE_NUMBER_INT);
 
-$var = filter_var($_POST['entry_id'], FILTER_SANITIZE_NUMBER_INT);
+  $stmt = $pdo->prepare("SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.*
+   FROM Entry JOIN User ON Entry.poster=User.username
+   JOIN Votes ON Votes.vote_id=Entry.entry_id
+   WHERE entry_id=:entry_id");
 
-die(var_dump($var));
-
-$stmt = $pdo->prepare("SELECT Entry.*, User.user_id, User.username, User.avatar, Votes.*
-  FROM Entry JOIN User ON Entry.poster=User.username
-  JOIN Votes ON Votes.vote_id=Entry.entry_id
-  WHERE entry_id='$var'");
-
-$stmt->bindParam(':entry_id', $var, PDO::PARAM_INT);
-
+  $stmt->bindParam(':entry_id', $var, PDO::PARAM_INT);
 
 $stmt->execute();
 $entry = $stmt->fetch(PDO::FETCH_ASSOC); //fetching the first row of results from the array.
 if (!$stmt) {
     die(var_dump($pdo->errorInfo()));
 }
-// foreach ($entries as $entry) {
-//   $title = $entry['title'];
-//   $link = $entry['link'];
-//   $description = $entry['description'];
-//   $post_date = $entry['post_date'];
-//   $score = $entry['score'];
- ?>
+?>
+
 <div class="container">
         <div class="row pt-5 justify-content-center">
             <div class="col-md-6">
