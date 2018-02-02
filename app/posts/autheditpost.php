@@ -19,8 +19,7 @@ if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
     $updatePost->bindParam(':title', $title, PDO::PARAM_STR);
     $updatePost->bindParam(':link', $link, PDO::PARAM_STR);
     $updatePost->bindParam(':description', $description, PDO::PARAM_STR);
-    $updatePost->bindParam(':id', $_POST['id'], PDO::PARAM_INT); //ny med id
+    $updatePost->bindParam(':id', $_POST['entry_id'], PDO::PARAM_INT); //ny med id
     $updatePost->execute();
+    redirect('../../userposts.php');
 }
-
-redirect('../../userposts.php');
