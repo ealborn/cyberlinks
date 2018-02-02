@@ -47,3 +47,6 @@ As a user I should be able to delete my links.
 
 As a user I should be able to up and down vote links.
 
+### Testers
+Linn Tunberg & Beatrice Svensson
+
