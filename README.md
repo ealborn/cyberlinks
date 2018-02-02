@@ -1,6 +1,6 @@
 # cyberlinks
 
-<img src="https://media.giphy.com/media/OtzgZFc49J8YM/giphy.gif" alt="cyberlinks" width="80%">
+<img src="https://media.giphy.com/media/OtzgZFc49J8YM/giphy.gif" alt="cyberlinks" width="50%">
 
 A school assignment to create a reddit-like clone, mainly using PHP.
 
