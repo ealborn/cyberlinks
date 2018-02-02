@@ -28,6 +28,7 @@ $userSession = $_SESSION['userSession'] ?? false;
     $post_date = $entry['post_date'];
     $score = $entry['score'] ?>
 
+<!-- displays all user posts made  -->
 <div class="card">
   <div class="card-body">
       <div class="row">
