@@ -12,10 +12,18 @@ This is what you need to open this project:
 
 - A web browser running a modern browser like Chrome or Firefox.
 
-## Download and install
+## Get Started
 
-Clone or download the repository by method of your choice.
-Find the downloaded folder in your selected location and open the file named index.html in your browser.
+This is what you need to open this project:
+
+- MAMP or a similar local web server
+- An updated web browser, preferably Google Chrome.
+
+### Installing
+
+1. Clone or download or download the repository.
+2. Set up MAMP or something like it and set the root directory to the repository folder "cyberlinks-master". You find this under the Web server tab in Preferences. Make sure to set location to the inner file "cyberlinks-master" containing all the repository files. The servers should start automatically, but if not, press "Start Servers".
+3. Open your browser of choice and go to "localhost:8888"
 
 
 ### Features required for project
