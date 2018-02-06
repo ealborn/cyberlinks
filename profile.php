@@ -6,6 +6,18 @@ require __DIR__.'/views/header.php';
 $userSession = $_SESSION['userSession'] ?? false;
 $message = $_SESSION['message'] ?? '';
 unset($_SESSION['message']);
+
+// fetch from database again
+$statement = $pdo->prepare('SELECT * FROM User');
+$statement->execute();
+$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+//loop through User array to get all the data
+foreach ($results as $result) {
+  $bio = $result['bio'];
+  $email = $result['email'];
+  $password = $result['password'];
+}
 ?>
 <div class="container">
 
@@ -38,22 +50,10 @@ unset($_SESSION['message']);
 
   <div class="card">
     <h5 class="col-6">Your Biography:</h5>
-    <p class="col-6"><?php echo $userSession['bio']; ?></p>
+    <p class="col-6"><?php echo $bio; ?></p>
   </div>
 
   <!-- update user profile -->
-  <?php
-  // fetch from database again
-  $statement = $pdo->prepare('SELECT * FROM User');
-  $statement->execute();
-  $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-  //loop through User array to get all the data
-  foreach ($results as $result) {
-    $bio = $result['bio'];
-    $email = $result['email'];
-    $password = $result['password'];
-  } ?>
 
    <!-- update biography, email or password form -->
       <form action="/app/auth/updateprofile.php" method="POST">
