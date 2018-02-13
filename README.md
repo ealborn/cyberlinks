@@ -50,3 +50,17 @@ As a user I should be able to up and down vote links.
 ### Testers
 Linn Tunberg & Beatrice Svensson
 
+### Todo
+- Move up PHP code to top of page where possible.
+- Add support for multiple image formats without them saving as several files.
+- Separate PHP code into their own documents if possible.
+- Improve structure of files, move some more into auth, make separate votes folder etc.
+- Make stuff into variables to shorten
+- Make stuff into functions to shorten code and avoid dublicates
+- Add Javascript warnings
+- Limit number of votes
+- Look into improving update biography to more updates at once?
+- Add comments
+
+
+```

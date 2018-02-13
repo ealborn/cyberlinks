@@ -52,4 +52,3 @@ if (isset($_FILES['avatar'])) {
   $_SESSION['userSession'] = $user;
   redirect('/profile.php');
 }
-// går att använda fetch om du inte använder något kolon i din SQL query. annars måste prepare/bindparam/excecute användas.
