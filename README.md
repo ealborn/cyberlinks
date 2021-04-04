@@ -10,12 +10,6 @@ This project is written in PHP, HTML, CSS and Bootstrap.
 
 This is what you need to open this project:
 
-- A web browser running a modern browser like Chrome or Firefox.
-
-## Get Started
-
-This is what you need to open this project:
-
 - MAMP or a similar local web server
 - An updated web browser, preferably Google Chrome.
 
